@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Toko Rooter | 24/7 Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+    .serif { font-family: 'Playfair Display', serif; }
+    .input-field { 
+      background: #f1f5f9; 
+      border: 2px solid transparent; 
+      border-radius: 1.5rem; 
+      padding: 1.25rem 1.75rem;
+      font-weight: 700;
+      color: #0f172a;
+      transition: all 0.3s ease;
+    }
+    .input-field:focus { 
+      border-color: #4f46e5; 
+      outline: none; 
+      background: white;
+      box-shadow: 0 10px 40px rgba(79, 70, 229, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-[#0f172a]">
+
+  <%- include('partials/navbar') %>
+
+  <!-- Header -->
+  <section class="max-w-[1500px] mx-auto px-4 py-4">
+    <div class="bg-slate-950 rounded-[4rem] py-32 px-10 text-center text-white relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-700 rounded-full blur-[200px] opacity-30"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto space-y-8">
+        <p class="text-purple-400 font-bold uppercase tracking-[0.4em] text-xs">Direct Access 24/7</p>
+        <h1 class="text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-none">Book Your <br> Service.</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info -->
+  <section class="py-32 max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-5 gap-24">
+      
+      <div class="lg:col-span-3 space-y-16">
+        <% if (success) { %>
+          <div class="bg-emerald-50 border-2 border-emerald-500/20 p-10 rounded-[2.5rem] flex items-center gap-8 animate-bounce">
+            <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fas fa-check"></i>
+            </div>
+            <div>
+              <p class="text-2xl font-extrabold text-slate-900 uppercase tracking-tighter">Message Received.</p>
+              <p class="text-emerald-700 font-bold"><%= message %></p>
+            </div>
+          </div>
+        <% } %>
+
+        <div class="space-y-6">
+          <h2 class="text-5xl font-extrabold text-slate-900 uppercase tracking-tighter leading-none">Instant Booking.</h2>
+          <p class="text-lg text-slate-500 font-medium">Locally owned. We respond to emergency inquiries within 30-60 minutes. Trusted by homeowners across Edmonton.</p>
+        </div>
+
+        <form action="/booking" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-3">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 ml-6">Full Identity</label>
+            <input type="text" name="name" placeholder="Name" class="w-full input-field" required>
+          </div>
+          <div class="space-y-3">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 ml-6">Digital Address</label>
+            <input type="email" name="email" placeholder="Email" class="w-full input-field" required>
+          </div>
+          <div class="space-y-3">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 ml-6">Direct Line</label>
+            <input type="tel" name="phone" placeholder="+1 780-000-0000" class="w-full input-field" required>
+          </div>
+          <div class="space-y-3">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 ml-6">Requirement</label>
+            <select name="service" class="w-full input-field appearance-none">
+              <option>Plumbing Repair</option>
+              <option>Hot Water Tank</option>
+              <option>Drain & Sewer</option>
+              <option>Toilet Install/Repair</option>
+              <option>Kitchen/Sink/Faucet</option>
+              <option>Sump Pump Service</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 space-y-3">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 ml-6">Details</label>
+            <textarea name="message" rows="6" placeholder="How can we help?" class="w-full input-field resize-none" required></textarea>
+          </div>
+          <div class="md:col-span-2 pt-4">
+            <button type="submit" class="w-full bg-slate-950 text-white py-8 rounded-[2rem] font-bold text-2xl hover:bg-purple-600 transition-all shadow-2xl flex items-center justify-center gap-6 group uppercase">
+              SUBMIT SERVICE REQUEST
+              <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="lg:col-span-2 space-y-12">
+        <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-slate-100 space-y-12 relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-48 h-48 bg-purple-50 rounded-full blur-3xl opacity-50"></div>
+          
+          <div class="relative z-10 space-y-12">
+            <h3 class="text-3xl font-extrabold text-slate-950 uppercase tracking-tighter">Direct Lines</h3>
+            
+            <div class="space-y-10">
+              <div class="flex items-start gap-6 group">
+                <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Emergency 24/7</p>
+                  <p class="text-2xl font-bold text-slate-950 tracking-tighter">+1 780-709-1080</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-6 group">
+                <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Contact Email</p>
+                  <p class="text-2xl font-bold text-slate-950 tracking-tighter">info@tokorooter.ca</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-10">
+              <div class="w-full h-[400px] rounded-[3rem] overflow-hidden border-4 border-slate-50 ring-1 ring-slate-100">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d390192.6116252488!2d-113.67230026127856!3d53.46507199145468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a025f48c98309f%3A0x4aa90ff4d1bb7dca!2sToko%20Rooter-Plumbers%2CPlumbing!5e0!3m2!1sen!2s!4v1779108997548!5m2!1sen!2s"
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+  <%- include('partials/chatbot') %>
+
+</body>
+</html>
